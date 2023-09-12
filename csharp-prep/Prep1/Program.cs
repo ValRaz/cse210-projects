@@ -12,7 +12,7 @@ class Program
         string lastname = Console.ReadLine();
         //Retrieves user input storing data in the lastname variable
 
-        Console.WriteLine($"Your name is {lastname}, {firstname} {lastname}. ");
+        Console.WriteLine($"Your name is {lastname}, {firstname} {lastname}.");
         //Prints Bond style naming to the terminal
 
     }
