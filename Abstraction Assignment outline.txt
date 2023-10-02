@@ -1,0 +1,71 @@
+Class Names:
+	
+Journal:		
+Responsibilities:
+			
+Manage a list of entries.
+			
+Add new entries.
+			
+Display all entries.
+			
+Save entries to a file.
+			
+Load entries from a file.
+		
+Attributes:
+			
+List<Entry> entries
+	
+Entry:		
+Responsibilities:
+			
+Store entry data (e.g., date, content).			
+Display the content of an entry.
+		
+Attributes:
+			
+String date			
+String content
+	
+PromptGenerator:		
+Responsibilities:
+			
+Generate prompts for journal entries.
+		
+Attributes:
+			
+None (can be implemented as a method).
+
+Behaviors:
+
+Journal Class:	
+addEntry(entry: Entry): Adds a new entry to the journal.
+	
+displayEntries(): Displays all entries in the journal.
+	
+saveToFile(filename: String): Saves journal entries to a file.
+	
+loadFromFile(filename: String): Loads journal entries from a file.
+
+
+Entry Class:	
+displayContent(): Displays the content of an entry.
+
+PromptGenerator Class:	
+generatePrompt(): Generates a prompt for journal entries.
+
+
+Attributes:
+
+Journal Class:	
+entries: List<Entry>: Stores a list of Entry objects.
+
+
+Entry Class:	
+date: String: Stores the date of the entry.	
+content: String: Stores the content of the entry.
+
+
+PromptGenerator Class:	
+No attributes are necessary; this class can be implemented as a method.
