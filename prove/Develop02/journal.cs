@@ -1,4 +1,5 @@
 using System;
+using System.Linq.Expressions;
 
 public class Journal {
     public List<Entry> entries;
@@ -12,26 +13,55 @@ public class Journal {
     }
 
     //Adds a new entry to the journal from user input
-    public void AddEntry(string date) {
+    public void AddEntry() {
         
         string prompt = promptGenerator.GenerateRandomPrompt();
         Console.WriteLine($"Today's Prompt: {prompt}");
 
+        Console.Write("Please enter the date(mm/dd/yyyy): ");
+        string dateInput = Console.ReadLine();
+        Console.Write("> ");
         string content = Console.ReadLine();
-
-        Entry entry = new Entry(date, content);
-        entries.Add(entry);
     }
 
-    //Displays all entries
+    //Displays data input this session
     public void DisplayEntries() {
         foreach (Entry entry in entries) {
             entry.DisplayEntry();
         }
     }
 
-    //Saves Entries to a file
-    public void SaveToFile(string filename) {
-        
+    //Saves Entries to a file named by the user
+    public void SaveToFile() {
+        Console.Write("Please enter the filename you would like to save to: ");
+        string filename = Console.ReadLine();
+        try {
+            using (StreamWriter writer = new StreamWriter(filename)) {
+                foreach (Entry entry in entries) {
+                    writer.WriteLine($"{entry.DateCreated}\n{entry.Content}");
+                }
+            }
+            Console.WriteLine($"Journal entries saved to {filename}");
+        } catch (Exception e) {
+            Console.WriteLine($"Error saving entries to {filename}: {e.Message}");
+        }
+    }
+
+    //Loads Entries from a file named by the user
+    public void LoadFromFile() {
+        Console.Write("Please enter the file name you would like to load from: ");
+        String filename = Console.ReadLine();
+        try {
+            using (StreamReader reader = new StreamReader(filename)) {
+                while (!reader.EndOfStream) {
+                    string dateString = reader.ReadLine();
+                    string content = reader.ReadLine();
+                    Entry entry = new Entry(dateString, content);
+                    entries.Add(entry);
+                }
+            } 
+        } catch (Exception e) {
+                Console.WriteLine($"Error loading entries from :filename: {e.Message}");
+        }
     }
 }

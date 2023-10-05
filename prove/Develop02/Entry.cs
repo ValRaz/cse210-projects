@@ -1,20 +1,19 @@
 using System;
 
 public class Entry {
-    public string Date {get; set;}
+    public string DateCreated {get;}
+    public string Content {get;}
 
-    public string Content {get; set;}
-
-   //Constructor to initialize the date and content of an entry
-    public Entry (string date, string content) {
-        Date = date;
+   //Initializes the date and content of an entry from user input
+    public Entry (string dateInput, string content) {
+        DateCreated = dateInput;
         Content = content;
     }
 
     //Displays the content of an entry
     public void DisplayEntry()
     {
-        Console.WriteLine($"Date: {Date}");
+        Console.WriteLine($"Date: {DateCreated}");
         Console.WriteLine($"Content: {Content}\n");
     }
 }
