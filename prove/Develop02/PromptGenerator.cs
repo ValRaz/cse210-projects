@@ -1,7 +1,7 @@
 using System;
 
 public class PromptGenerator {
-    public List<string> Prompts {get;}
+    public List<string> Prompts {get; set;}
 
     public PromptGenerator() {
         Prompts = new List<string> {

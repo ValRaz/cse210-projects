@@ -1,11 +1,10 @@
 using System;
-using System.Linq.Expressions;
 
 public class Journal {
     public List<Entry> entries;
     public PromptGenerator promptGenerator;
 
-    //Constructor to initialize and empty list of entries
+    //Constructor initializes and empty list of entries
     public Journal() {
         entries = new List<Entry>();
         //Initializes the prompt generator
@@ -16,10 +15,9 @@ public class Journal {
     public void AddEntry() {
         
         string prompt = promptGenerator.GenerateRandomPrompt();
-        Console.WriteLine($"Today's Prompt: {prompt}");
-
         Console.Write("Please enter the date(mm/dd/yyyy): ");
         string dateInput = Console.ReadLine();
+        Console.WriteLine($"Today's Prompt: {prompt}");
         Console.Write("> ");
         string content = Console.ReadLine();
     }
