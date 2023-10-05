@@ -23,7 +23,8 @@ class Program
             string choice = Console.ReadLine();
 
             //Calls class methods per user selection
-            switch (choice) {
+            switch (choice)
+            {
                 //Adds new entry
                 case "1":
                 journal.AddEntry();
