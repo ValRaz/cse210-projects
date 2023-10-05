@@ -11,6 +11,8 @@ class Program
         Console.WriteLine("Welcome to Your Daily Journal!");
         
         while (true) {
+            //Requests user selection for action to take
+            Console.Write("Please select an option (1-5) ");
             Console.WriteLine("Menu:");
             Console.WriteLine("1. Add Entry");
             Console.WriteLine("2. Display");
@@ -18,8 +20,6 @@ class Program
             Console.WriteLine("4. Save");
             Console.WriteLine("5. Quit");
 
-            //Requests user selection for action to take
-            Console.Write("Please select an option (1-5) ");
             string choice = Console.ReadLine();
 
             //Calls class methods per user selection

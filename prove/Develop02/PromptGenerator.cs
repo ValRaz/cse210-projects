@@ -2,7 +2,7 @@ using System;
 
 public class PromptGenerator {
     public List<string> Prompts {get; set;}
-
+//Populates a list of prompts
     public PromptGenerator() {
         Prompts = new List<string> {
             "What was the best part of your day?",
