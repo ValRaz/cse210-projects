@@ -1,14 +1,14 @@
 using System;
 
 public class Journal {
-    public List<Entry> entries;
-    public PromptGenerator promptGenerator;
+    public List<Entry> _entries;
+    public PromptGenerator _promptGenerator;
 
     //Constructor initializes and empty list of entries
     public Journal() {
-        entries = new List<Entry>();
+        _entries = new List<Entry>();
         //Initializes the prompt generator
-        promptGenerator = new PromptGenerator();
+        _promptGenerator = new PromptGenerator();
     }
 
     //Adds a new entry to the journal from user input
@@ -22,14 +22,14 @@ public class Journal {
         string content = Console.ReadLine();
 
         Entry entry = new Entry(dateInput, content);
-        entries.Add(entry);
+        _entries.Add(entry);
         
         Console.WriteLine("This entry has been added.");
     }
 
     //Displays data input this session
     public void DisplayEntries() {
-        foreach (Entry entry in entries) {
+        foreach (Entry entry in _entries) {
             entry.DisplayEntry();
         }
     }
@@ -40,8 +40,8 @@ public class Journal {
         string filename = Console.ReadLine();
         try {
             using (StreamWriter writer = new StreamWriter(filename)) {
-                foreach (Entry entry in entries) {
-                    writer.WriteLine($"{entry.DateCreated}\n{entry.Content}");
+                foreach (Entry entry in _entries) {
+                    writer.WriteLine($"{entry._dateCreated}\n{entry._content}");
                 }
             }
             Console.WriteLine($"Journal entries saved to {filename}");

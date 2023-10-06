@@ -1,10 +1,10 @@
 using System;
 
 public class PromptGenerator {
-    public List<string> Prompts {get; set;}
+    public List<string> _prompts {get; set;}
 //Populates a list of prompts
     public PromptGenerator() {
-        Prompts = new List<string> {
+        _prompts = new List<string> {
             "What was the best part of your day?",
             "Write about an experience where you felt the spirit with you today:",
             "Who was the most interesting person you interacted with today?",
@@ -24,7 +24,7 @@ public class PromptGenerator {
     //Generates a random prompt from the list
     public string GenerateRandomPrompt() {
         Random random = new Random();
-        int index = random.Next(Prompts.Count);
-        return Prompts[index];
+        int index = random.Next(_prompts.Count);
+        return _prompts[index];
     }
 }
