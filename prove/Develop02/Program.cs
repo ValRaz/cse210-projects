@@ -12,7 +12,7 @@ class Program
         
         while (true) {
             //Requests user selection for action to take
-            Console.Write("Please select an option (1-5) ");
+            Console.WriteLine("Please select an option (1-5) ");
             Console.WriteLine("Menu:");
             Console.WriteLine("1. Add Entry");
             Console.WriteLine("2. Display");
@@ -34,6 +34,7 @@ class Program
                 case "2":
                 journal.DisplayEntries();
                 break;
+
                 case "5":
                 Console.WriteLine("Goodbye!");
                 return;
