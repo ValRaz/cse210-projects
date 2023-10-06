@@ -14,7 +14,7 @@ public class Journal {
     //Adds a new entry to the journal from user input
     public void AddEntry() {
         
-        string prompt = promptGenerator.GenerateRandomPrompt();
+        string prompt = _promptGenerator.GenerateRandomPrompt();
         Console.Write("Please enter the date(mm/dd/yyyy): ");
         string dateInput = Console.ReadLine();
         Console.WriteLine($"Today's Prompt: {prompt}");
