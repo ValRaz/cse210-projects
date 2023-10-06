@@ -35,6 +35,16 @@ class Program
                 journal.DisplayEntries();
                 break;
 
+                //Loads entries from a file
+                case "3":
+                journal.LoadFromFile();
+                break;
+
+                //Saves entries to a file
+                case "4":
+                journal.SaveToFile();
+                break;
+
                 case "5":
                 Console.WriteLine("Goodbye!");
                 return;
