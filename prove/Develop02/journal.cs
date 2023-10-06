@@ -20,6 +20,11 @@ public class Journal {
         Console.WriteLine($"Today's Prompt: {prompt}");
         Console.Write("> ");
         string content = Console.ReadLine();
+
+        Entry entry = new Entry(dateInput, content);
+        entries.Add(entry);
+        
+        Console.WriteLine("This entry has been added.");
     }
 
     //Displays data input this session
@@ -54,8 +59,9 @@ public class Journal {
                 while (!reader.EndOfStream) {
                     string dateString = reader.ReadLine();
                     string content = reader.ReadLine();
-                    Entry entry = new Entry(dateString, content);
-                    entries.Add(entry);
+
+                    Console.WriteLine($"Date: {dateString}");
+                    Console.WriteLine($"{content}\n");
                 }
             } 
         } catch (Exception e) {
