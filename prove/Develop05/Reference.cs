@@ -1,5 +1,4 @@
 using System;
-using System.Collections.Concurrent;
 
 //Stores the scripture reference information
 public class Reference {

@@ -1,5 +1,4 @@
 using System;
-using System.Dynamic;
 
 //Stores word text and hidden status
 public class Word {

@@ -1,6 +1,4 @@
 using System;
-using System.Collections.Concurrent;
-using System.Collections.Generic;
 
 public class Scripture {
     //Stores scripture reference
@@ -31,6 +29,7 @@ public class Scripture {
 
     //Display the scriture and reference
     public void Display() {
+        Console.Clear();
         Console.WriteLine(Reference);
         foreach (var word in _words) {
             if (word.IsHidden) {
