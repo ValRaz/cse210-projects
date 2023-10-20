@@ -27,9 +27,8 @@ public class Scripture {
         _words = selectedScripture._words;
     }
 
-    //Display the scriture and reference
+    //Display the scripture and reference
     public void Display() {
-        Console.Clear();
         Console.WriteLine(Reference);
         foreach (var word in _words) {
             if (word.IsHidden) {
@@ -83,7 +82,7 @@ public class Scripture {
         return null;
     }
 
-    //Loads and parses scriptures from file
+    //Loads scriptures from file
     private List<Scripture> LoadScripturesFromFile(string filepath) {
         var result = new List<Scripture>();
         var lines = File.ReadAllLines(filepath);
@@ -102,6 +101,13 @@ public class Scripture {
                 currentWords.AddRange(ParseScripture(line));
             }
 
+            if (string.IsNullOrWhiteSpace(line) && currentReference != null) {
+                var scripture =  new Scripture(currentReference, currentWords);
+                result.Add(scripture);
+                currentReference = null;
+                currentWords.Clear();
+            }
+
             if (currentReference != null && currentWords.Any()) {
                 var scripture = new Scripture(currentReference, currentWords);
                 result.Add(scripture);
@@ -114,19 +120,39 @@ public class Scripture {
     }
     //Parses the scripture text from the file
     private List<Word> ParseScripture(string scriptureText) {
-        var lines = scriptureText.Split('\n', StringSplitOptions.RemoveEmptyEntries);
+        var lines = scriptureText.Split("\n", StringSplitOptions.RemoveEmptyEntries);
         var scriptureWords = new List<Word>();
+
+        var referenceAdded = false;
+        var scriptureTextBuilder = new StringBuilder();
+
         foreach (var line in lines) {
             var trimmedLine = line.Trim();
-            if (trimmedLine.Contains(".")) {
-                var parts = trimmedLine.Split(new[]{"."}, 2, StringSplitOptions.None);
-                if (parts.Length == 2) {
-                    scriptureWords.Add(new Word(parts[0]));
-                    scriptureWords.Add(new Word(parts[1]));
+            
+            if (!referenceAdded) {
+                scriptureWords.Add(new Word(trimmedLine));
+                referenceAdded = true;
+            }
+            else if (string.IsNullOrWhiteSpace(trimmedLine)) {
+                if(scriptureTextBuilder.Length > 0) {
+                    var words = scriptureTextBuilder.ToString().Split(" ");
+                    foreach (var word in words) {
+                        scriptureWords.Add(new Word(word));
+                    }
+                    scriptureTextBuilder.Clear();
                 }
             }
             else {
-                scriptureWords.Add(new Word (trimmedLine));
+                if (scriptureTextBuilder.Length > 0) {
+                    scriptureTextBuilder.Append(" ");
+                }
+                scriptureTextBuilder.Append(trimmedLine);
+            }
+        }
+        if (scriptureTextBuilder.Length > 0) {
+            var words = scriptureTextBuilder.ToString().Split(" ");
+            foreach (var word in words) {
+                scriptureWords.Add(new Word(word));
             }
         }
 
