@@ -57,105 +57,43 @@ public class Scripture {
         return _words.TrueForAll(word => word.IsHidden);
     }
 
-    //Parses the reference from the file
-    private Reference ParseReference(string referenceText) {
-        var parts = referenceText.Trim().Split(" ");
-        if (parts.Length >= 2) {
-            var book = parts[0];
-            var referenceParts = parts[1].Split(":");
-
-            if (referenceParts.Length ==2) {
-                var chapter = int.Parse(referenceParts[0]);
-                var verseParts = referenceParts[1].Split("-");
-
-                if (verseParts.Length == 1) {
-                    var startVerse = int.Parse(verseParts[0]);
-                    return new Reference(book, chapter, startVerse);
-                }
-                else if (verseParts.Length == 2) {
-                    var startVerse = int.Parse(verseParts[0]);
-                    var endVerse = int.Parse(verseParts[1]);
-                    return new Reference(book, chapter, startVerse, endVerse);
-                }
-            }
-        }
-        return null;
-    }
-
-    //Loads scriptures from file
-    private List<Scripture> LoadScripturesFromFile(string filepath) {
+    //Parses scripture text and reference from file
+    private List<Scripture> LoadScripturesFromFile(string filePath) {
+        var lines = File.ReadAllLines(filePath); // Use File.ReadAllLines directly
         var result = new List<Scripture>();
-        var lines = File.ReadAllLines(filepath);
-
-        Reference currentReference = null;
-        List<Word> currentWords = new List<Word>();
 
         foreach (var line in lines) {
-            if (string.IsNullOrWhiteSpace(line)) {
-                continue;
-            }
-            if (currentReference == null) {
-                currentReference = ParseReference(line);
-            }
-            else {
-                currentWords.AddRange(ParseScripture(line));
-            }
+            var parts = line.Split('|');
+            if (parts.Length == 2) {
+                var reference = parts[0].Trim();
+                var scriptureText = parts[1].Trim();
 
-            if (string.IsNullOrWhiteSpace(line) && currentReference != null) {
-                var scripture =  new Scripture(currentReference, currentWords);
-                result.Add(scripture);
-                currentReference = null;
-                currentWords.Clear();
-            }
+                // Creates Word objects from the scripture text
+                var words = scriptureText.Split(' ');
+                var wordList = words.Select(w => new Word(w)).ToList();
 
-            if (currentReference != null && currentWords.Any()) {
-                var scripture = new Scripture(currentReference, currentWords);
-                result.Add(scripture);
-                currentReference = null;
-                currentWords.Clear();
+                // Parse the reference to create a Reference object
+                var referenceParts = reference.Split(' ');
+                if (referenceParts.Length >= 2) {
+                    var book = referenceParts[0];
+                    var chapterVerseParts = referenceParts[1].Split(':');
+                    if (chapterVerseParts.Length == 2) {
+                        var chapter = int.Parse(chapterVerseParts[0]);
+                        var verseParts = chapterVerseParts[1].Split('-');
+                        if (verseParts.Length == 1) {
+                            var verse = int.Parse(verseParts[0]);
+                            result.Add(new Scripture(new Reference(book, chapter, verse), wordList));
+                        }
+                    else if (verseParts.Length == 2) {
+                        var startVerse = int.Parse(verseParts[0]);
+                        var endVerse = int.Parse(verseParts[1]);
+                        result.Add(new Scripture(new Reference(book, chapter, startVerse, endVerse), wordList));
+                        }
+                    }
+                }
             }
         }
-
         return result;
     }
-    //Parses the scripture text from the file
-    private List<Word> ParseScripture(string scriptureText) {
-        var lines = scriptureText.Split("\n", StringSplitOptions.RemoveEmptyEntries);
-        var scriptureWords = new List<Word>();
-
-        var referenceAdded = false;
-        var scriptureTextBuilder = new StringBuilder();
-
-        foreach (var line in lines) {
-            var trimmedLine = line.Trim();
-            
-            if (!referenceAdded) {
-                scriptureWords.Add(new Word(trimmedLine));
-                referenceAdded = true;
-            }
-            else if (string.IsNullOrWhiteSpace(trimmedLine)) {
-                if(scriptureTextBuilder.Length > 0) {
-                    var words = scriptureTextBuilder.ToString().Split(" ");
-                    foreach (var word in words) {
-                        scriptureWords.Add(new Word(word));
-                    }
-                    scriptureTextBuilder.Clear();
-                }
-            }
-            else {
-                if (scriptureTextBuilder.Length > 0) {
-                    scriptureTextBuilder.Append(" ");
-                }
-                scriptureTextBuilder.Append(trimmedLine);
-            }
-        }
-        if (scriptureTextBuilder.Length > 0) {
-            var words = scriptureTextBuilder.ToString().Split(" ");
-            foreach (var word in words) {
-                scriptureWords.Add(new Word(word));
-            }
-        }
-
-        return scriptureWords;
-    }
-}
+}    
+    
