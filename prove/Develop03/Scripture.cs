@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 
 public class Scripture {
-    private Reference _scriptureReference; // Renamed the member variable
+    private Reference _scriptureReference; 
     private List<Word> _words;
 
     // Gets the reference associated with the scripture.
@@ -13,7 +13,7 @@ public class Scripture {
 
     // Initializes a scripture with a given reference and list of words.
     public Scripture(Reference scriptureReference, List<Word> words) {
-        _scriptureReference = scriptureReference; // Updated member variable name
+        _scriptureReference = scriptureReference; 
         _words = words;
     }
 
@@ -64,7 +64,7 @@ public class Scripture {
         foreach (var line in lines) {
             var parts = line.Split('|');
             if (parts.Length == 2) {
-                var scriptureReference = parts[0].Trim(); // Renamed the variable
+                var scriptureReference = parts[0].Trim(); 
                 var scriptureText = parts[1].Trim();
 
                 var words = scriptureText.Split(' ');
