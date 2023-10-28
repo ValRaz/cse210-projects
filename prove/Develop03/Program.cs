@@ -1,10 +1,13 @@
 using System;
+using System.Collections.Generic;
+using System.IO;
+
 
 class Program
 {
     static void Main(string[] args)
     {
-        var filePath = "prove/Develop03/Scriptures.txt";
+        var filePath = "Scriptures.txt";
         var loadedScripture = new Scripture(filePath);
 
         // Utilizes Word, Reference, and Scripture class to display a scripture, and interact with the user to hide a random word or quit per user input.
