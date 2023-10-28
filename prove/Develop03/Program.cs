@@ -7,7 +7,7 @@ class Program
 {
     static void Main(string[] args)
     {
-        var filePath = "Scriptures.txt";
+        string filePath = "Scriptures.txt";
         var loadedScripture = new Scripture(filePath);
 
         // Utilizes Word, Reference, and Scripture class to display a scripture, and interact with the user to hide a random word or quit per user input.
