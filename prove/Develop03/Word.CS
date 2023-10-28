@@ -24,7 +24,7 @@ public class Word {
         _isHidden = false;
     }
 
-    // Gets the word to display, taking into account its hidden status.
+    // Ceativity demonstration: Gets the word to display, taking into account its hidden status.
     public string Display {
         get {
             if (_isHidden) {
