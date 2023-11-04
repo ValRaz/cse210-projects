@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using System.Threading;
 
 class ReflectingActivity : Activity {
@@ -10,7 +11,7 @@ class ReflectingActivity : Activity {
     private List<string> ReflectionQuestions { get; }
 
     // Constructor for ReflectingActivity
-    public ReflectingActivity() : base("Reflecting Activity", "This activity will help you reflect on times in your life when you have shown strength and resilience. This will help you recognize the power you have and how you can use it in other aspects of your life.", 0, PauseType.Spinner) {
+    public ReflectingActivity() : base("Reflecting Activity", "This activity will help you reflect on times in your life when you have shown strength and resilience. This will help you recognize the power you have and how you can use it in other aspects of your life.") {
         // Initialize the reflection prompts
         ReflectionPrompts = new List<string> {
             "Think of a time when you stood up for someone else.",
@@ -33,32 +34,31 @@ class ReflectingActivity : Activity {
         };
     }
 
-    // Override the RunActivitySpecific method to implement activity-specific logic
-    protected override void RunActivitySpecific() {
-        Random random = new Random();
-        int remainingDuration = Duration;
+    // Run the ReflectingActivity
+    public void RunReflectingActivity() {
+        SetDurationFromUserInput();
+        DateTime endTime = DateTime.Now.AddSeconds(Duration);
 
-        // Continue showing random prompts and questions until the specified duration is reached
-        while (remainingDuration > 0) {
+            Random random = new Random();
+    int remainingDuration = Duration;
+
+        while (DateTime.Now < endTime) {
+            // Randomly selects and displays a prompt from the list
             string randomPrompt = ReflectionPrompts[random.Next(ReflectionPrompts.Count)];
-            
-            // Display a random reflection prompt
             Console.WriteLine(randomPrompt);
 
             // Pause for reflection
-            DisplayAnimation();
+            DisplayAnimation(5);
             Thread.Sleep(3000);
 
             string randomQuestion = ReflectionQuestions[random.Next(ReflectionQuestions.Count)];
-            
-            // Display a random reflection question
             Console.WriteLine(randomQuestion);
 
             // Pause for reflection
-            DisplayAnimation();
+            DisplayAnimation(5);
             Thread.Sleep(3000);
 
-            remainingDuration -= 10; // Subtracting time for each prompt and question
+            remainingDuration -= 10;
         }
     }
 }

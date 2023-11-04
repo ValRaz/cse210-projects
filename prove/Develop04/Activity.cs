@@ -1,8 +1,10 @@
 using System;
 using System.Collections.Generic;
+using System.Runtime.CompilerServices;
 using System.Threading;
 
-class Activity {
+class Activity
+{
     protected string Name { get; private set; }
     private string Description { get; }
     protected int Duration { get; private set; }
@@ -14,12 +16,9 @@ class Activity {
     }
 
     // Activity constructor
-    public Activity(string name, string description, int duration, PauseType pauseType) {
+    public Activity(string name, string description) {
         Name = name;
         Description = description;
-        Duration = duration;
-        ActivityPauseType = pauseType;
-        TimeToPause = DateTime.Now;
     }
 
     // Starting message
@@ -29,15 +28,17 @@ class Activity {
 
     // Ending message
     protected string EndingMessage() {
-        return $"You've completed {Duration} of {Name} today, well done!";
+        return $"You've completed {Duration} seconds of {Name} today, well done!";
     }
 
     // Display animation during pauses
-    protected void DisplayAnimation() {
+    protected void DisplayAnimation(int durationInSeconds) {
         string[] spinnerSequence = { "|", "/", "-", "\\" };
         int spinnerIndex = 0;
 
-        for (int i = 0; i < Duration; i++) {
+        DateTime endTime = DateTime.Now.AddSeconds(durationInSeconds);
+
+        while (DateTime.Now < endTime) {
             Console.Write($"{spinnerSequence[spinnerIndex]}\r");
             spinnerIndex = (spinnerIndex + 1) % spinnerSequence.Length;
             Thread.Sleep(500);
@@ -46,27 +47,10 @@ class Activity {
         Console.Write($"{new string(' ', spinnerSequence[spinnerIndex].Length)}\r");
     }
 
-    // Run activity method
-    public void RunActivity() {
+    // Set activity duration based on user input
+    public void SetDurationFromUserInput() {
         Console.WriteLine(StartingMessage());
-        int userDuration = int.Parse(Console.ReadLine());
-
-        Console.WriteLine("Please get ready to start");
-        Thread.Sleep(3000);
-
-        for (int i = 0; i < Duration; i++) {
-            DisplayAnimation();
-            Thread.Sleep(1000);
-        }
-
-        RunActivitySpecific();
-
-        Console.WriteLine(EndingMessage());
-    }
-
-    // Activity-specific code for derived classes
-    protected virtual void RunActivitySpecific() {
-        // This will be overridden in the derived classes
+        Duration = int.Parse(Console.ReadLine());
     }
 
     // Display a countdown during pauses
