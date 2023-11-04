@@ -5,39 +5,39 @@ using System.Threading;
 
 class BreathingActivity : Activity {
     // Properties to store messages and settings specific to BreathingActivity
-    private string BreathingInMsg { get; }
-    private string BreathingOutMsg { get; }
-    private int SecondsForCountdown { get; }
+    private string _breathingInMsg { get; }
+    private string _breathingOutMsg { get; }
+    private int _secondsForCountdown { get; }
 
     // Constructor for BreathingActivity
     public BreathingActivity() : base("Breathing Activity", "This activity will help you relax by guiding you in a conscious breathing exercise. Please clear your mind and focus on your breathing.") {
         // Initialize messages and settings
-        BreathingInMsg = "Breathe in...";
-        BreathingOutMsg = "Breathe out...";
-        SecondsForCountdown = 5;
+        _breathingInMsg = "Breathe in...";
+        _breathingOutMsg = "Breathe out...";
+        _secondsForCountdown = 5;
     }
 
     // Run the BreathingActivity
     public void RunBreathingActivity() {
         SetDurationFromUserInput();
-        DateTime endTime = DateTime.Now.AddSeconds(Duration);
+        DateTime endTime = DateTime.Now.AddSeconds(_duration);
 
         // Call DisplayAnimation method
         DisplayAnimation(5);
 
         while (DateTime.Now < endTime) {
-         // Perform breathing exercise for the specified duration
+            // Perform breathing exercise for the specified duration
             // Display "Breathe in..." message
-            Console.WriteLine(BreathingInMsg);
+            Console.WriteLine(_breathingInMsg);
 
             // Perform a countdown for inhaling
-            DisplayCountdown(SecondsForCountdown);
+            DisplayCountdown(_secondsForCountdown);
 
             // Display "Breathe out..." message
-            Console.WriteLine(BreathingOutMsg);
+            Console.WriteLine(_breathingOutMsg);
 
             // Perform a countdown for exhaling
-            DisplayCountdown(SecondsForCountdown);
+            DisplayCountdown(_secondsForCountdown);
         }
 
         // Display the ending message

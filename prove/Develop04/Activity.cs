@@ -5,40 +5,46 @@ using System.Threading;
 
 class Activity
 {
-    protected string Name { get; private set; }
-    private string Description { get; }
-    protected int Duration { get; private set; }
-    private PauseType ActivityPauseType { get; }
-    private DateTime TimeToPause { get; set; }
+    protected string _name { get; private set; }
+    private string _description { get; }
+    protected int _duration { get; private set; }
+    private PauseType _activityPauseType { get; }
+    private DateTime _timeToPause { get; set; }
 
-    public enum PauseType {
+    public enum PauseType
+    {
         Spinner, Countdown
     }
 
     // Activity constructor
-    public Activity(string name, string description) {
-        Name = name;
-        Description = description;
+    public Activity(string name, string description)
+    {
+        _name = name;
+        _description = description;
     }
 
     // Starting message
-    protected string StartingMessage() {
-        return $"Welcome to {Name}!\n{Description}\nPlease set the Duration for this activity in seconds.";
+    protected string StartingMessage()
+    {
+        return $"Welcome to {_name}!\n{_description}\nPlease set the duration for this activity in seconds.";
     }
 
     // Ending message
-    protected string EndingMessage() {
-        return $"You've completed {Duration} seconds of {Name} today, well done!";
+    protected string EndingMessage()
+    {
+        return $"You've completed {_duration} seconds of {_name} today, well done!";
     }
 
     // Display animation during pauses
-    protected void DisplayAnimation(int durationInSeconds) {
+    protected void DisplayAnimation(int durationInSeconds)
+    {
         string[] spinnerSequence = { "|", "/", "-", "\\" };
         int spinnerIndex = 0;
 
         DateTime endTime = DateTime.Now.AddSeconds(durationInSeconds);
 
-        while (DateTime.Now < endTime) {
+        while (DateTime.Now < endTime)
+        {
             Console.Write($"{spinnerSequence[spinnerIndex]}\r");
             spinnerIndex = (spinnerIndex + 1) % spinnerSequence.Length;
             Thread.Sleep(500);
@@ -48,14 +54,17 @@ class Activity
     }
 
     // Set activity duration based on user input
-    public void SetDurationFromUserInput() {
+    public void SetDurationFromUserInput()
+    {
         Console.WriteLine(StartingMessage());
-        Duration = int.Parse(Console.ReadLine());
+        _duration = int.Parse(Console.ReadLine());
     }
 
     // Display a countdown during pauses
-    protected void DisplayCountdown(int seconds) {
-        for (int countdown = seconds; countdown > 0; countdown--) {
+    protected void DisplayCountdown(int seconds)
+    {
+        for (int countdown = seconds; countdown > 0; countdown--)
+        {
             Console.WriteLine(countdown);
             Thread.Sleep(1000);
         }
