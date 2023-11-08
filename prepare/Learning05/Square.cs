@@ -1,5 +1,4 @@
 using System;
-using System.Reflection.Metadata.Ecma335;
 
 public class Square : Shape {
     private double _side;
@@ -14,12 +13,12 @@ public class Square : Shape {
         return _side;
     }
 
-    //Setter method to retrieve side length
+    //Setter method to set side length
     public void SetSide(double side) {
         _side = side;
     }
 
-    //Ovverride to calculate the area
+    //Ovverride to calculate the area of the square
     public override double GetArea(){
         return _side * _side;
     }
