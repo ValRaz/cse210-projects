@@ -1,6 +1,4 @@
 using System;
-using System.ComponentModel;
-using System.Reflection.Metadata.Ecma335;
 
 public class Goal {
     private string _name;
@@ -35,6 +33,16 @@ public class Goal {
     public virtual void RecordEvent() {
         _goalCompleted = true;
         Console.WriteLine($"Event recorded for '{_name}'.");
+    }
+
+    //Getter for goal completion status
+    public bool IsGoalCompleted() {
+        return _goalCompleted;
+    }
+
+    //Protected setter for goal completion status
+    protected void SetGoalCompleted(bool completed) {
+        _goalCompleted = completed;
     }
 
     //Virtual method to create new goal
