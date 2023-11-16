@@ -10,6 +10,11 @@ public class CheckListGoal : Goal {
         _timesAccomplished = 0;
     }
 
+    //Getter method for timesAccomplished
+    public int GetTimesAccomplished() {
+        return _timesAccomplished;
+    }
+
     //Override method to calculate the amount of points for checklist goal
     public override int GetPoints()
     {
