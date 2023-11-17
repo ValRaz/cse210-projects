@@ -15,6 +15,6 @@ public class EternalGoal : Goal {
     public override void RecordEvent()
     {
         base.RecordEvent();
-        Console.WriteLine($"Eternal goal '{GetName()}' Points added: {GetPoints}.");
+        Console.WriteLine($"Eternal goal '{GetName()}' Points added: {GetPoints()}.");
     }
 }
