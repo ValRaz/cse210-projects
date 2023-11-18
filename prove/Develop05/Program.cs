@@ -133,7 +133,7 @@ class Program
             ShowGoals(goals);
             Console.Write("Select a Goal to Record Event (Enter Goal Number): ");
     
-            // Allowing the user to select a goal by its number
+            //Allows user to select a goal
             if (int.TryParse(Console.ReadLine(), out int goalNumber) && goalNumber >= 0 && goalNumber < goals.Count) {
                 // Retrieving the selected goal
                 Goal selectedGoal = goals[goalNumber];
