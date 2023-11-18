@@ -16,8 +16,7 @@ public class CheckListGoal : Goal {
     }
 
     //Override method to calculate the amount of points for checklist goal
-    public override int GetPoints()
-    {
+    public override int GetPoints() {
         if (IsGoalCompleted()) {
             return base.GetPoints() + 25;
         }
@@ -38,8 +37,7 @@ public class CheckListGoal : Goal {
     }
 
     //Override to get a string showing completion status of checklist goal
-    public override string GetCompletion()
-    {
+    public override string GetCompletion(){
         if (IsGoalCompleted()) {
             return $"[X] Completed: {_timesToAccomplishGoal}/{_timesToAccomplishGoal} times.";
         }

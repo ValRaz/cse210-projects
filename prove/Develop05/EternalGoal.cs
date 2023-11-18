@@ -6,14 +6,12 @@ public class EternalGoal : Goal {
     }
 
     //Override method to calculate the points for this event
-    public override int GetPoints()
-    {
+    public override int GetPoints() {
         return base.GetPoints() + 10;
     }
 
     //Override to record Eternal goal event and mark event accomplished
-    public override void RecordGoalEvent()
-    {
+    public override void RecordGoalEvent() {
         base.RecordGoalEvent();
         Console.WriteLine($"Eternal goal '{GetName()}' Points added: {GetPoints()}.");
     }
