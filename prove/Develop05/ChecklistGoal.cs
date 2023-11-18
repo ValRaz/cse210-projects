@@ -19,17 +19,16 @@ public class CheckListGoal : Goal {
     public override int GetPoints()
     {
         if (IsGoalCompleted()) {
-            return (base.GetPoints() * _timesAccomplished) + base.GetPoints();
+            return base.GetPoints() + 25;
         }
         else {
-            return base.GetPoints() * _timesAccomplished;
+            return (base.GetPoints() + 10) *_timesAccomplished ;
         }
     }
 
     //Override method to record an event and/or mark checklist completed
-    public override void RecordEvent()
-    {
-        base.RecordEvent();
+    public override void RecordGoalEvent() {
+        base.RecordGoalEvent();
         _timesAccomplished ++;
 
         if (_timesAccomplished == _timesToAccomplishGoal) {

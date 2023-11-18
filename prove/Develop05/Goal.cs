@@ -7,7 +7,7 @@ public class Goal {
     private Boolean _goalCompleted;
 
     //Constructor for Goal
-    public Goal(string name, string description, int amountPoints) {
+    public Goal(string name, string description, int amountPoints = 15) {
         _name = name;
         _description = description;
         _amountPoints = amountPoints;
@@ -30,7 +30,7 @@ public class Goal {
     }
 
     //Method to record an event and mark the goal as accomplished
-    public virtual void RecordEvent() {
+    public virtual void RecordGoalEvent() {
         _goalCompleted = true;
         Console.WriteLine($"Event recorded for '{_name}'.");
     }
