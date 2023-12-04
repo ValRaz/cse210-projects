@@ -19,7 +19,10 @@ class Order {
         }
 
         //Adds shipping cost based on customer country
-        return totalPrice + (_customer.GetInUSA() ? 5 : 35);
+        decimal totalPriceWithShipping = totalPrice + (_customer.GetInUSA() ? 5 : 35);
+
+        //Formats the total price to display cents
+        return totalPriceWithShipping;
     }
 
     //Gets packing label for the order

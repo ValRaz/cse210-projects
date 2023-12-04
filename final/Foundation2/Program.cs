@@ -43,16 +43,16 @@ class Program
         //Displays packing label, shipping label and total price for Order 1
         Console.WriteLine($"Order 1, Packing Label:\n{order1.GetPackingLabel()}");
         Console.WriteLine($"\nOrder 1, Shipping Label:\n{order1.GetShippingLabel()}");
-        Console.WriteLine($"\nOrder 1, Total Price:\n{order1.CalculateTotalPrice()}");
+        Console.WriteLine($"\nOrder 1, Total Price:\n{order1.CalculateTotalPrice().ToString("C")}");
 
         //Displays packing label, shipping label and total price for Order 2
         Console.WriteLine($"\n\nOrder 2, Packing Label:\n{order2.GetPackingLabel()}");
         Console.WriteLine($"\nOrder 2, Shipping Label:\n{order2.GetShippingLabel()}");
-        Console.WriteLine($"\nOrder 2, Total Price:\n{order2.CalculateTotalPrice()}");
+        Console.WriteLine($"\nOrder 2, Total Price:\n{order2.CalculateTotalPrice().ToString("C")}");
 
         //Displays packing label, shipping label and total price for Order 3
         Console.WriteLine($"\n\nOrder 3, Packing Label:\n{order3.GetPackingLabel()}");
         Console.WriteLine($"\nOrder 3, Shipping Label:\n{order3.GetShippingLabel()}");
-        Console.WriteLine($"\nOrder 3, Total Price:\n{order3.CalculateTotalPrice()}");
+        Console.WriteLine($"\nOrder 3, Total Price:\n{order3.CalculateTotalPrice().ToString("C")}");
     }
 }
