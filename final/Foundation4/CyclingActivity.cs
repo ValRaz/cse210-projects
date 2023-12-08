@@ -10,7 +10,7 @@ class Cycling : Activity {
 
     //Override to get the distance
     public override double GetDistance() {
-        return _speed * (GetMinutes() / 60);
+        return _speed * (GetMinutes() / 60.0);
     }
 
     //Override to get the speed
@@ -25,6 +25,6 @@ class Cycling : Activity {
 
     public override string GetSummary()
     {
-        return $"{GetDate().ToString("dd MMM yyyy")} Cycling ({GetMinutes()} min):\nDistance {GetDistance():F1} km, Speed: {_speed} kph, Pace: {GetPace():F1} min per km";
+        return $"{GetDate().ToString("dd MMM yyyy")} Cycling ({GetMinutes()} min)- Distance {GetDistance():F1} km, Speed: {_speed} kph, Pace: {GetPace():F1} min per km\n";
     }
 }
