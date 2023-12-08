@@ -15,7 +15,7 @@ class Running : Activity {
 
     //Override to get the speed
     public override double GetSpeed() {
-        return _distance / (GetMinutes() / 60);
+        return _distance / (GetMinutes() / 60.0);
     }
 
     //Override to get the pace

@@ -6,8 +6,8 @@ class Program
     static void Main(string[] args)
     {
         //Creates running activities
-        Activity running1 = new Running(new DateTime(2023, 5, 4), 30, 4.7);
-        Activity running2 = new Running(new DateTime(2023, 7, 16), 47, 3.2);
+        Activity running1 = new Running(new DateTime(2023, 5, 4), 45, 4.7);
+        Activity running2 = new Running(new DateTime(2023, 7, 16), 30, 3.2);
 
         //Creates Cycling activities
         Activity cycling1 = new Cycling(new DateTime(2023, 7, 9), 45, 30);
